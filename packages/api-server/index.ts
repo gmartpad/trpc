@@ -8,10 +8,24 @@ const t = trpc.initTRPC.create()
 const router = t.router;
 const publicProcedure = t.procedure;
 
+interface ChatMessage {
+  user: string;
+  message: string;
+}
+
+const messages: ChatMessage[] = [
+  { user: "user1", message: "Hello" },
+  { user: "user2", message: "Hi" }
+]
+
 const appRouter = router({
   hello: publicProcedure
     .query((req) => {
       return "Hello world II!"
+    }),
+  getMessages: publicProcedure
+    .query(() => {
+      return messages
     })
 });
 
