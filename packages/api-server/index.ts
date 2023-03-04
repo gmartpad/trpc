@@ -11,7 +11,7 @@ const publicProcedure = t.procedure;
 const appRouter = router({
   hello: publicProcedure
     .query((req) => {
-      return "Hello world!"
+      return "Hello world II!"
     })
 });
 
