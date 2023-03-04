@@ -15,6 +15,8 @@ const appRouter = router({
     })
 });
 
+export type AppRouter = typeof appRouter
+
 const app = express();
 app.use(cors());
 const port = 8080;
