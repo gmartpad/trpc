@@ -1,4 +1,8 @@
 import express from "express";
+import * as trpc from "@trpc/server"
+import * as trpcExpress from "@trpc/server/adapters/express"
+
+const appRouter = trpc.router()
 
 const app = express();
 const port = 8080;
