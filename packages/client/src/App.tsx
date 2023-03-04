@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { createTRPCProxyClient, httpBatchLink } from "@trpc/react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { AppRouter } from "api-server";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { httpBatchLink } from "@trpc/react-query";
 
 import "./index.scss";
 import { trpc } from "./trpc";
@@ -10,12 +9,12 @@ import { trpc } from "./trpc";
 const client = new QueryClient();
 
 const AppContent = () => {
+
+  const hello = trpc.hello.useQuery()
+
   return (
     <div className="mt-10 text-3xl mx-auto max-w-6xl">
-      <div>Name: client</div>
-      <div>Framework: react</div>
-      <div>Language: TypeScript</div>
-      <div>CSS: Tailwind</div>
+      <div>{JSON.stringify(hello.data)}</div>
     </div>
   );
 }
@@ -30,7 +29,7 @@ const App = () => {
         })
       ]
     })
-  );
+  )
 
   return (
     <trpc.Provider client={trpcClient} queryClient={client}>
