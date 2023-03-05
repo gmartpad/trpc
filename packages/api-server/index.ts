@@ -30,6 +30,17 @@ const appRouter = router({
     )
     .query(({ input }) => {
       return messages.slice(-input)
+    }),
+  addMessage: publicProcedure
+    .input(
+      z.object({
+        user: z.string(),
+        message: z.string()
+      })
+     )
+    .mutation(({ input }) => {
+      messages.push(input);
+      return input;
     })
 });
 
