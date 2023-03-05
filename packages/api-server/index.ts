@@ -1,7 +1,8 @@
 import express from "express";
-import * as trpc from "@trpc/server"
-import * as trpcExpress from "@trpc/server/adapters/express"
-import cors from "cors"
+import * as trpc from "@trpc/server";
+import * as trpcExpress from "@trpc/server/adapters/express";
+import cors from "cors";
+import { z } from "zod";
 
 const t = trpc.initTRPC.create()
 
@@ -24,8 +25,11 @@ const appRouter = router({
       return "Hello world II!"
     }),
   getMessages: publicProcedure
-    .query(() => {
-      return messages
+    .input(
+      z.number().default(10)
+    )
+    .query(({ input }) => {
+      return messages.slice(-input)
     })
 });
 

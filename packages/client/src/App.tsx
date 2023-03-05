@@ -11,10 +11,11 @@ const client = new QueryClient();
 const AppContent = () => {
 
   const hello = trpc.hello.useQuery()
+  const getMessages = trpc.getMessages.useQuery()
 
   return (
     <div className="mt-10 text-3xl mx-auto max-w-6xl">
-      <div>{JSON.stringify(hello.data)}</div>
+      <div>{JSON.stringify(getMessages.data)}</div>
     </div>
   );
 }
